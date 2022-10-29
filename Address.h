@@ -38,7 +38,7 @@ bool operator<(const Address &lhs, const Address &rhs) {
                 else if (lhs.floor_ > rhs.floor_)
                     return false;
                 else
-                    return true;
+                    return false;
             }
         }
     }
