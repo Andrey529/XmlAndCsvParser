@@ -5,15 +5,15 @@
 
 class Address {
 public:
-    const std::string city_;
-    const std::string street_;
-    const std::string house_;
-    const std::string floor_;
+    const std::wstring city_;
+    const std::wstring street_;
+    const std::wstring house_;
+    const std::wstring floor_;
 
-    Address(const std::string &city, const std::string &street, const std::string &house, const std::string &floor)
+    Address(const std::wstring &city, const std::wstring &street, const std::wstring &house, const std::wstring &floor)
         : city_(city), street_(street), house_(house), floor_(floor) { }
 
-    Address(std::string &&city, std::string &&street, std::string &&house, std::string &&floor)
+    Address(std::wstring &&city, std::wstring &&street, std::wstring &&house, std::wstring &&floor)
             : city_(std::move(city)), street_(std::move(street)), house_(std::move(house)), floor_(std::move(floor)) { }
 };
 
