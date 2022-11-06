@@ -12,8 +12,8 @@
 class XmlParser {
 private:
     std::string filePath_;
-    std::set<Address> allRecords_;
-    std::map<Address, unsigned int> duplicateRecords_;
+    std::set<Address<std::wstring>> allRecords_;
+    std::map<Address<std::wstring>, unsigned int> duplicateRecords_;
     std::map<std::wstring, std::array<unsigned int, 5>> countBuildingsForEachCity_;
 public:
     XmlParser() = default;

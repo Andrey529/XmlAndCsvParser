@@ -3,21 +3,23 @@
 
 #include <string>
 
+template<class value_type = std::wstring>
 class Address {
 public:
-    const std::wstring city_;
-    const std::wstring street_;
-    const std::wstring house_;
-    const std::wstring floor_;
+    const value_type city_;
+    const value_type street_;
+    const value_type house_;
+    const value_type floor_;
 
-    Address(const std::wstring &city, const std::wstring &street, const std::wstring &house, const std::wstring &floor)
+    Address(const value_type &city, const value_type &street, const value_type &house, const value_type &floor)
         : city_(city), street_(street), house_(house), floor_(floor) { }
 
-    Address(std::wstring &&city, std::wstring &&street, std::wstring &&house, std::wstring &&floor)
+    Address(value_type &&city, value_type &&street, value_type &&house, value_type &&floor)
             : city_(std::move(city)), street_(std::move(street)), house_(std::move(house)), floor_(std::move(floor)) { }
 };
 
-bool operator<(const Address &lhs, const Address &rhs) {
+template<class value_type = std::wstring>
+bool operator<(const Address<value_type> &lhs, const Address<value_type> &rhs) {
     if (lhs.city_ < rhs.city_)
         return true;
     else if (lhs.city_ > rhs.city_)

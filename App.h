@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include "XmlParser.h"
+#include "CsvParser.h"
 
 class App {
 private:
@@ -40,10 +41,17 @@ public:
             else if (filePath_.find(".csv") != std::string::npos) {
                 attemptForInputFilePath = 3;
 
+                CsvParser parser;
+                std::cout << "Work started" << std::endl;
 
-
-
-
+                auto start = std::chrono::high_resolution_clock::now();
+                parser.Read(filePath_);
+                auto finish = std::chrono::duration_cast<std::chrono::nanoseconds>
+                        (std::chrono::high_resolution_clock::now() - start);
+                double time = finish.count();
+                std::cout << "File processing time = " << time << " ns = " << time/1000000000 << " sec." << std::endl;
+                parser.writeDuplicateRecords();
+                parser.writeCountBuildingsForEachCity();
             }
             else {
                 attemptForInputFilePath--;

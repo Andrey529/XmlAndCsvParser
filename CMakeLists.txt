@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.16)
 project(XmlAndCsvParser)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -13,7 +13,7 @@ if(NOT EXISTS ${CSVPARSER_DIR})
 endif()
 # Add the csv-parser CMake files to the project
 add_subdirectory(${CSVPARSER_DIR})
-include_directories(${CSVPARSER_DIR}/include)
+include_directories(${CSVPARSER_DIR}/single_include)
 
 add_executable(XmlAndCsvParser main.cpp XmlParser.h Address.h App.h CsvParser.h)
 
