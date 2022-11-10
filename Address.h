@@ -19,6 +19,14 @@ public:
 };
 
 template<class value_type = std::wstring>
+bool operator==(const Address<value_type>& lhs, const Address<value_type>& rhs) {
+    return (lhs.city_ == rhs.city_) &&
+           (lhs.street_ == rhs.street_) &&
+           (lhs.house_ == rhs.house_) &&
+           (lhs.floor_ == rhs.floor_);
+}
+
+template<class value_type = std::wstring>
 bool operator<(const Address<value_type> &lhs, const Address<value_type> &rhs) {
     if (lhs.city_ < rhs.city_)
         return true;
@@ -45,5 +53,17 @@ bool operator<(const Address<value_type> &lhs, const Address<value_type> &rhs) {
         }
     }
 }
+
+template<class value_type = std::wstring>
+struct AddressHasher {
+    std::size_t operator()(const Address<value_type> &address) const {
+        size_t res = 17;
+        res = res * 31 + std::hash<value_type>()( address.city_ );
+        res = res * 31 + std::hash<value_type>()( address.street_ );
+        res = res * 31 + std::hash<value_type>()( address.house_ );
+        res = res * 31 + std::hash<value_type>()( address.floor_ );
+        return res;
+    }
+};
 
 #endif //XMLANDCSVPARSER_ADDRESS_H
